@@ -13,6 +13,9 @@ Then needs python packages of tokenizers, prompt-toolkit and torch.
 - https://pypi.org/project/prompt-toolkit/
 - https://pytorch.org/get-started/locally/#macos-version
 
+If you want to run on M1's GPU cores, you need the install the nightly version of pytorch:
+- https://developer.apple.com/metal/pytorch/
+
 
 ## [wip] 0 - Dependencies With Nix
 
@@ -77,6 +80,9 @@ Another strategy would be to run the whole thing on the cpu, namely `cpu fp32`.
 We can also run some layers on the GPU, as much as our VRAM allows and the rest on the CPU. Then our strategy would look something like: `cuda fp16 *20 -> cpu fp32`.
 
 Similarly, we can run the first 20s layer at half precision on the GPU and the rest at full precision. And that strategy would look something like this: `cuda fp16i8 *20 -> cuda fp16`.
+
+You would use some variation of `mps 16` to run on the M1's GPU. More about it here:
+- https://github.com/BlinkDL/ChatRWKV/issues/65
 
 Check out the table on the original repository for more details:
 https://github.com/BlinkDL/ChatRWKV/blob/main/ChatRWKV-strategy.png
